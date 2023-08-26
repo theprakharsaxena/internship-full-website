@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 async function fetchBlogs() {
-  const res = await fetch("http://localhost:3000/api/blog", {
+  const res = await fetch(`${process.env.APP_URL}/api/blog`, {
     next: {
       revalidate: 10,
     },
