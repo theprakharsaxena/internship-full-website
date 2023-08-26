@@ -15,7 +15,7 @@ type UpdateBlogParams = {
 };
 
 const updateBlog = async (data: UpdateBlogParams) => {
-  const res = await fetch(`${process.env.APP_URL}/api/blog/${data.id}`, {
+  const res = await fetch(`${process.env.API_URL}/api/blog/${data.id}`, {
     method: "PUT",
     body: JSON.stringify({
       image: data.image,
@@ -30,7 +30,7 @@ const updateBlog = async (data: UpdateBlogParams) => {
 };
 
 const deleteBlog = async (id: string) => {
-  const res = fetch(`${process.env.APP_URL}/api/blog/${id}`, {
+  const res = fetch(`${process.env.API_URL}/api/blog/${id}`, {
     method: "DELETE",
     //@ts-ignore
     "Content-Type": "application/json",
@@ -39,7 +39,7 @@ const deleteBlog = async (id: string) => {
 };
 
 const getBlogById = async (id: string) => {
-  const res = await fetch(`${process.env.APP_URL}/api/blog/${id}`);
+  const res = await fetch(`${process.env.API_URL}/api/blog/${id}`);
   const data = await res.json();
   console.log("DATA", data);
   return data.post;

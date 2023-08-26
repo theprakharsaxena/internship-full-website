@@ -15,7 +15,7 @@ const postBlog = async ({
   title: string;
   description: string;
 }) => {
-  const res = fetch(`${process.env.APP_URL}/api/blog`, {
+  const res = fetch(`${process.env.API_URL}/api/blog`, {
     method: "POST",
     body: JSON.stringify({ image, title, description }),
     //@ts-ignore
