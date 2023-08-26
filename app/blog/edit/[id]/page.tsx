@@ -6,6 +6,7 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import Editor from "@/app/components/Editor";
 type UpdateBlogParams = {
+  image: string;
   title: string;
   description: string;
   id: string;
@@ -13,7 +14,11 @@ type UpdateBlogParams = {
 const updateBlog = async (data: UpdateBlogParams) => {
   const res = fetch(`http://localhost:3000/api/blog/${data.id}`, {
     method: "PUT",
-    body: JSON.stringify({ title: data.title, description: data.description }),
+    body: JSON.stringify({
+      image: data.image,
+      title: data.title,
+      description: data.description,
+    }),
     //@ts-ignore
     "Content-Type": "application/json",
   });
@@ -38,15 +43,15 @@ const getBlogById = async (id: string) => {
 
 const EditBlog = ({ params }: { params: { id: string } }) => {
   const router = useRouter();
-  const titleRef = useRef<HTMLInputElement | null>(null);
-  // const descriptionRef = useRef<HTMLTextAreaElement | null>(null);
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
+  const [image, setImage] = useState("");
 
   useEffect(() => {
     toast.loading("Fetching Blog Details 🚀", { id: "1" });
     getBlogById(params.id)
       .then((data) => {
+        setImage(data.image);
         setTitle(data.title);
         setContent(data.description);
         console.log("COMPLETED");
@@ -60,10 +65,11 @@ const EditBlog = ({ params }: { params: { id: string } }) => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    if (titleRef.current && content) {
+    if (title && content && image) {
       toast.loading("Sending Request 🚀", { id: "1" });
       await updateBlog({
-        title: titleRef.current?.value,
+        image: image,
+        title: title,
         description: content,
         id: params.id,
       });
@@ -77,6 +83,20 @@ const EditBlog = ({ params }: { params: { id: string } }) => {
     toast.success("Blog Deleted", { id: "2" });
     router.push("/");
   };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (typeof reader.result === "string") {
+          setImage(reader.result);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <Fragment>
       <Toaster />
@@ -85,18 +105,21 @@ const EditBlog = ({ params }: { params: { id: string } }) => {
           <p className="text-2xl text-slate-200 font-bold p-3">
             Edit A Wonderful Blog 🚀
           </p>
+          {image && (
+            <div>
+              <p>Selected Image:</p>
+              <img src={image} alt="Uploaded" style={{ maxHeight: "300px" }} />
+            </div>
+          )}
           <form onSubmit={handleSubmit}>
+            <input accept="image/*" type="file" onChange={handleImageChange} />
             <input
               placeholder="Enter Title"
               type="text"
               className="rounded-md px-4 w-full py-2 my-2 text-black"
               value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
-            {/* <textarea
-              ref={descriptionRef}
-              placeholder="Enter Description"
-              className="rounded-md px-4 py-2 w-full my-2 text-black"
-            ></textarea> */}
             <Editor value={content} onChange={setContent} />
             <div className="flex justify-between">
               <button className="font-semibold px-4 py-2 shadow-xl bg-slate-200 rounded-lg m-auto hover:bg-slate-100">

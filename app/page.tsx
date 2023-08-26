@@ -12,7 +12,7 @@ async function fetchBlogs() {
 
 export default async function Home() {
   const posts = await fetchBlogs();
-  console.log("POSTS++++++++++++++++++",posts);
+  console.log("POSTS++++++++++++++++++", posts);
 
   return (
     <main className="w-full h-full">
@@ -31,9 +31,13 @@ export default async function Home() {
         </Link>
       </div>
       {/* Blogs */}
-      <div className="w-full flex  flex-col justify-center items-center">
+      <div className="w-[80%] flex flex-col justify-center items-center">
         {posts?.map((post: any) => (
           <div className="w-3/4 p-4 rounded-md mx-3 my-2 bg-red-300 flex flex-col justify-center">
+            {/* Image */}
+            <div className="">
+              <img src={post.image} alt={post.title} />
+            </div>
             {/* Title and Action */}
             <div className="flex items-center my-3">
               <div className="mr-auto">

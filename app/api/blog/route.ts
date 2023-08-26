@@ -24,9 +24,9 @@ export const GET = async (req: Request, res: NextResponse) => {
 
 export const POST = async (req: Request, res: NextResponse) => {
   try {
-    const { title, description } = await req.json();
+    const { image, title, description } = await req.json();
     await main();
-    const post = await prisma.post.create({ data: { description, title } });
+    const post = await prisma.post.create({ data: { description, title, image } });
     return NextResponse.json({ message: "Success", post }, { status: 201 });
   } catch (err) {
     return NextResponse.json({ message: "Error", err }, { status: 500 });
