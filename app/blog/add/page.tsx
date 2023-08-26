@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import { ChangeEvent, Fragment, useRef, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import Editor from "../../components/Editor.js";
-import { error } from "console";
 import Image from "next/image";
 
 const postBlog = async ({
@@ -31,7 +30,6 @@ const AddBlog = () => {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [base64Data, setBase64Data] = useState<string>("");
   const titleRef = useRef<HTMLInputElement | null>(null);
-  // const descriptionRef = useRef<HTMLTextAreaElement | null>(null);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -47,12 +45,7 @@ const AddBlog = () => {
     }
   };
 
-  // const handleInputImage = (event: ChangeEvent<HTMLInputElement>) => {
-  //   const file = event.target.files && event.target.files[0];
-  //   setSelectedFile(file || null);
-  // };
-
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       setImageFile(file);
