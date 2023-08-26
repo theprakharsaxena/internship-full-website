@@ -108,12 +108,13 @@ const EditBlog = ({ params }: { params: { id: string } }) => {
             Edit A Wonderful Blog 🚀
           </p>
           {image && (
-            <div>
-              <p>Selected Image:</p>
+            <div className="flex justify-center">
               <Image
                 src={image}
                 alt="Uploaded"
                 style={{ maxHeight: "300px" }}
+                width={500}
+                height={500}
               />
             </div>
           )}

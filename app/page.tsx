@@ -31,12 +31,20 @@ export default async function Home() {
         </Link>
       </div>
       {/* Blogs */}
-      <div className="grid grid-cols-4">
-        {posts?.map((post: any) => (
-          <div className="p-4 h-64 rounded-md overflow-auto mx-3 mb-2 bg-red-300 flex flex-col justify-between">
+      <div className="grid grid-cols-2">
+        {posts?.map((post: any, index: number) => (
+          <div
+            key={index}
+            className="p-4 h-64 rounded-md overflow-auto mx-3 mb-2 bg-red-300 flex flex-col justify-between"
+          >
             {/* Image */}
-            <div className="flex max-h-[70%]">
-              <Image src={post.image} alt={post.title}/>
+            <div className="flex max-h-[70%] justify-center">
+              <Image
+                src={post.image}
+                alt={post.title}
+                width={250}
+                height={250}
+              />
             </div>
             {/* Title and Action */}
             <div className="flex items-center my-3">
@@ -51,7 +59,7 @@ export default async function Home() {
               </Link>
             </div>
             {/* Date & Description */}
-            {/* <div className="mr-auto my-1">
+            <div className="mr-auto my-1">
               <blockquote className="font-bold text-slate-700">
                 {new Date(post.date).toDateString()}
               </blockquote>
@@ -61,7 +69,7 @@ export default async function Home() {
                 className="content"
                 dangerouslySetInnerHTML={{ __html: post.description }}
               />
-            </div> */}
+            </div>
           </div>
         ))}
       </div>

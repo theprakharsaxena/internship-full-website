@@ -76,12 +76,13 @@ const AddBlog = () => {
             Add A Wonderful Blog 🚀
           </p>
           {imageFile && (
-            <div>
-              <p>Selected Image: {imageFile.name}</p>
+            <div className="flex justify-center">
               <Image
                 src={base64Data}
                 alt="Uploaded"
                 style={{ maxHeight: "300px" }}
+                width={500}
+                height={500}
               />
             </div>
           )}
