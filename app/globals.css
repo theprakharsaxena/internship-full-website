@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  background-color: lightpink;
+  background-color: rgb(108, 166, 253);
 }
 
 div.content p {

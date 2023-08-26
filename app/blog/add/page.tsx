@@ -65,8 +65,8 @@ const AddBlog = () => {
       <Toaster />
       <div className="w-[80%] m-auto flex my-4">
         <div className="flex flex-col justify-center items-center m-auto">
-          <p className="text-2xl text-slate-200 font-bold p-3">
-            Add A Wonderful Blog 🚀
+          <p className="text-2xl text-black font-bold p-3">
+            Add Internship
           </p>
           {imageFile && (
             <div className="flex justify-center">

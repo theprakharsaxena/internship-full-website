@@ -106,8 +106,8 @@ const EditBlog = ({ params }: { params: { id: string } }) => {
       <Toaster />
       <div className="w-[80%] m-auto flex my-4">
         <div className="flex flex-col justify-center items-center m-auto">
-          <p className="text-2xl text-slate-200 font-bold p-3">
-            Edit A Wonderful Blog 🚀
+          <p className="text-2xl text-black font-bold p-3">
+            Edit Internship
           </p>
           {image && (
             <div className="flex justify-center">
