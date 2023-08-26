@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { ChangeEvent, Fragment, useRef, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
-import Editor from "../../components/Editor.js";
+import Editor from "../../components/Editor";
 import Image from "next/image";
 
 const postBlog = async ({

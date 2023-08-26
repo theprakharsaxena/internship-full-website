@@ -1,7 +1,12 @@
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // Import the editor's styles
 
-export default function Editor({ value, onChange }) {
+interface EditorProps {
+  value: string;
+  onChange: (newValue: string) => void;
+}
+
+const Editor: React.FC<EditorProps> = ({ value, onChange }) => {
   const modules = {
     toolbar: [
       [{ header: [1, 2, false] }],
@@ -28,4 +33,6 @@ export default function Editor({ value, onChange }) {
       />
     </div>
   );
-}
+};
+
+export default Editor;
