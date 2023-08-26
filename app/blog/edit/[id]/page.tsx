@@ -13,18 +13,20 @@ type UpdateBlogParams = {
   description: string;
   id: string;
 };
+
 const updateBlog = async (data: UpdateBlogParams) => {
-  const res = fetch`${process.env.APP_URL}/api/blog/${data.id}`, {
+  const res = await fetch(`${process.env.APP_URL}/api/blog/${data.id}`, {
     method: "PUT",
     body: JSON.stringify({
       image: data.image,
       title: data.title,
       description: data.description,
     }),
-    //@ts-ignore
-    "Content-Type": "application/json",
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
-  return (await res).json();
+  return await res.json();
 };
 
 const deleteBlog = async (id: string) => {
