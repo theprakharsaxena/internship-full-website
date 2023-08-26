@@ -5,6 +5,7 @@ import { ChangeEvent, Fragment, useRef, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import Editor from "../../components/Editor.js";
 import { error } from "console";
+import Image from "next/image";
 
 const postBlog = async ({
   image,
@@ -69,7 +70,7 @@ const AddBlog = () => {
   return (
     <Fragment>
       <Toaster />
-      <div className="m-auto flex my-4">
+      <div className="w-[80%] m-auto flex my-4">
         <div className="flex flex-col justify-center items-center m-auto">
           <p className="text-2xl text-slate-200 font-bold p-3">
             Add A Wonderful Blog 🚀
@@ -77,7 +78,7 @@ const AddBlog = () => {
           {imageFile && (
             <div>
               <p>Selected Image: {imageFile.name}</p>
-              <img
+              <Image
                 src={base64Data}
                 alt="Uploaded"
                 style={{ maxHeight: "300px" }}

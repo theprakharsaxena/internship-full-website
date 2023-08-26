@@ -19,7 +19,7 @@ export default function Editor({ value, onChange }) {
   };
 
   return (
-    <div className="content w-screen">
+    <div className="content w-full">
       <ReactQuill
         value={value}
         theme="snow"

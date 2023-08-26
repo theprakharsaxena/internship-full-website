@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import Editor from "@/app/components/Editor";
+import Image from "next/image";
+
 type UpdateBlogParams = {
   image: string;
   title: string;
@@ -100,7 +102,7 @@ const EditBlog = ({ params }: { params: { id: string } }) => {
   return (
     <Fragment>
       <Toaster />
-      <div className="w-full m-auto flex my-4">
+      <div className="w-[80%] m-auto flex my-4">
         <div className="flex flex-col justify-center items-center m-auto">
           <p className="text-2xl text-slate-200 font-bold p-3">
             Edit A Wonderful Blog 🚀
@@ -108,7 +110,7 @@ const EditBlog = ({ params }: { params: { id: string } }) => {
           {image && (
             <div>
               <p>Selected Image:</p>
-              <img src={image} alt="Uploaded" style={{ maxHeight: "300px" }} />
+              <Image src={image} alt="Uploaded" style={{ maxHeight: "300px" }} />
             </div>
           )}
           <form onSubmit={handleSubmit}>

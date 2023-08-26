@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 async function fetchBlogs() {
@@ -12,7 +13,6 @@ async function fetchBlogs() {
 
 export default async function Home() {
   const posts = await fetchBlogs();
-  console.log("POSTS++++++++++++++++++", posts);
 
   return (
     <main className="w-full h-full">
@@ -31,12 +31,12 @@ export default async function Home() {
         </Link>
       </div>
       {/* Blogs */}
-      <div className="w-[80%] flex flex-col justify-center items-center">
+      <div className="grid grid-cols-4">
         {posts?.map((post: any) => (
-          <div className="w-3/4 p-4 rounded-md mx-3 my-2 bg-red-300 flex flex-col justify-center">
+          <div className="p-4 h-64 rounded-md overflow-auto mx-3 mb-2 bg-red-300 flex flex-col justify-between">
             {/* Image */}
-            <div className="">
-              <img src={post.image} alt={post.title} />
+            <div className="flex max-h-[70%]">
+              <Image src={post.image} alt={post.title}/>
             </div>
             {/* Title and Action */}
             <div className="flex items-center my-3">
@@ -51,17 +51,17 @@ export default async function Home() {
               </Link>
             </div>
             {/* Date & Description */}
-            <div className="mr-auto my-1">
+            {/* <div className="mr-auto my-1">
               <blockquote className="font-bold text-slate-700">
                 {new Date(post.date).toDateString()}
               </blockquote>
             </div>
-            <div className=" mr-auto my-1">
+            <div className="mr-auto my-1">
               <div
                 className="content"
                 dangerouslySetInnerHTML={{ __html: post.description }}
               />
-            </div>
+            </div> */}
           </div>
         ))}
       </div>
