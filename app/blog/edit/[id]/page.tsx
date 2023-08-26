@@ -63,7 +63,7 @@ const EditBlog = ({ params }: { params: { id: string } }) => {
         console.log(err);
         toast.error("Error fetching blog", { id: "1" });
       });
-  }, []);
+  }, [params.id]);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -110,7 +110,11 @@ const EditBlog = ({ params }: { params: { id: string } }) => {
           {image && (
             <div>
               <p>Selected Image:</p>
-              <Image src={image} alt="Uploaded" style={{ maxHeight: "300px" }} />
+              <Image
+                src={image}
+                alt="Uploaded"
+                style={{ maxHeight: "300px" }}
+              />
             </div>
           )}
           <form onSubmit={handleSubmit}>
